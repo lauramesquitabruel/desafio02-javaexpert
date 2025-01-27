@@ -2,17 +2,23 @@ package com.bruel.desafio02.entities;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
-@Table(name = "category")
-public class Category {
+@Table(name = "categoria")
+public class Categoria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String descricao;
 
-    public Category(){}
+    @OneToMany(mappedBy = "categoria")
+    private List<Atividade> atividades = new ArrayList<>();
 
-    public Category(Integer id, String descricao) {
+    public Categoria(){}
+
+    public Categoria(Integer id, String descricao) {
         this.id = id;
         this.descricao = descricao;
     }
@@ -31,5 +37,9 @@ public class Category {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public List<Atividade> getAtividades() {
+        return atividades;
     }
 }

@@ -13,6 +13,7 @@ public class Categoria {
     private Integer id;
     private String descricao;
 
+    //relacionamento Categoria/Atividade
     @OneToMany(mappedBy = "categoria")
     private List<Atividade> atividades = new ArrayList<>();
 
